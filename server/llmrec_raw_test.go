@@ -9,10 +9,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mokerenki/cautious-memory/agent"
-	"github.com/mokerenki/cautious-memory/llmrec"
-	"github.com/Autumn-27/norma/llm"
-	"github.com/Autumn-27/norma/transcript"
+	"github.com/TNduna/VMT-23/agent"
+	"github.com/TNduna/VMT-23/llmrec"
+	"github.com/TNduna/norma/llm"
+	"github.com/TNduna/norma/transcript"
 )
 
 // Full chain against a real PG: Recorder → norma provider → capturing transport

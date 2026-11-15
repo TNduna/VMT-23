@@ -3,8 +3,8 @@ package server
 import (
 	"time"
 
-	"github.com/mokerenki/cautious-memory/agent"
-	"github.com/mokerenki/cautious-memory/db"
+	"github.com/TNduna/VMT-23/agent"
+	"github.com/TNduna/VMT-23/db"
 )
 
 // 重试策略的服务端解析，见 docs/LLM重试设计.md。五层里：

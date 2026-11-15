@@ -23,10 +23,10 @@ import (
 	"unicode"
 	"unicode/utf8"
 
-	"github.com/mokerenki/cautious-memory/agent"
-	"github.com/mokerenki/cautious-memory/db"
-	"github.com/Autumn-27/norma/llm"
-	"github.com/Autumn-27/norma/skill"
+	"github.com/TNduna/VMT-23/agent"
+	"github.com/TNduna/VMT-23/db"
+	"github.com/TNduna/norma/llm"
+	"github.com/TNduna/norma/skill"
 )
 
 // validSkillName checks the agentskills.io name constraints, widened so a skill can

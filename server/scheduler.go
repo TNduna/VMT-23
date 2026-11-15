@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mokerenki/cautious-memory/db"
+	"github.com/TNduna/VMT-23/db"
 )
 
 // Scheduler drives P3 triggers: on each tick it fires due interval triggers and

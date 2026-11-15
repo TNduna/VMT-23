@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/mokerenki/cautious-memory/db"
+	"github.com/TNduna/VMT-23/db"
 )
 
 // 总览「目标管理」的人工 CRUD 接口。与 agent 侧的 set_goals 工具写同一批 goal 节点,

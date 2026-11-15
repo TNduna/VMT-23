@@ -30,9 +30,9 @@ import (
 	"time"
 	"unicode/utf8"
 
-	"github.com/mokerenki/cautious-memory/db"
-	"github.com/Autumn-27/norma/permission"
-	actool "github.com/Autumn-27/norma/tool"
+	"github.com/TNduna/VMT-23/db"
+	"github.com/TNduna/norma/permission"
+	actool "github.com/TNduna/norma/tool"
 	mproxy "github.com/lqqyt2423/go-mitmproxy/proxy"
 	_ "modernc.org/sqlite"
 )

@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mokerenki/cautious-memory/db"
+	"github.com/TNduna/VMT-23/db"
 )
 
 // TestChatUnavailableReasonDistinguishesStates pins the operator-facing message

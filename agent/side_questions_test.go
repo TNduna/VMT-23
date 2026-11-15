@@ -10,10 +10,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mokerenki/cautious-memory/db"
-	"github.com/mokerenki/cautious-memory/sidequestion"
-	"github.com/Autumn-27/norma/llm"
-	"github.com/Autumn-27/norma/transcript"
+	"github.com/TNduna/VMT-23/db"
+	"github.com/TNduna/VMT-23/sidequestion"
+	"github.com/TNduna/norma/llm"
+	"github.com/TNduna/norma/transcript"
 )
 
 type sideAgentProvider struct {

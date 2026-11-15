@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mokerenki/cautious-memory/notify"
+	"github.com/TNduna/VMT-23/notify"
 )
 
 var (

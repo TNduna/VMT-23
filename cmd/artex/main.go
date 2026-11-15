@@ -16,10 +16,10 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/mokerenki/cautious-memory/agent"
-	"github.com/mokerenki/cautious-memory/config"
-	"github.com/mokerenki/cautious-memory/selfupdate"
-	"github.com/mokerenki/cautious-memory/server"
+	"github.com/TNduna/VMT-23/agent"
+	"github.com/TNduna/VMT-23/config"
+	"github.com/TNduna/VMT-23/selfupdate"
+	"github.com/TNduna/VMT-23/server"
 )
 
 // version is the build version, injected at release time via

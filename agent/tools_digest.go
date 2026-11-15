@@ -12,8 +12,8 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/mokerenki/cautious-memory/db"
-	actool "github.com/Autumn-27/norma/tool"
+	"github.com/TNduna/VMT-23/db"
+	actool "github.com/TNduna/norma/tool"
 )
 
 // digestMemberEntry builds the compact per-member view expand_digest returns —

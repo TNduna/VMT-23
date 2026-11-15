@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/mokerenki/cautious-memory/db"
+	"github.com/TNduna/VMT-23/db"
 )
 
 // --- asset intercept rule CRUD ---

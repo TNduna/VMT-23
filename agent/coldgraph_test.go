@@ -3,7 +3,7 @@ package agent
 import (
 	"testing"
 
-	"github.com/mokerenki/cautious-memory/db"
+	"github.com/TNduna/VMT-23/db"
 )
 
 // helper: intent/fact node

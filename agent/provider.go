@@ -20,12 +20,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mokerenki/cautious-memory/llmrec"
-	"github.com/Autumn-27/norma/agentcore"
-	"github.com/Autumn-27/norma/compaction"
-	"github.com/Autumn-27/norma/llm"
-	acperm "github.com/Autumn-27/norma/permission"
-	"github.com/Autumn-27/norma/transcript"
+	"github.com/TNduna/VMT-23/llmrec"
+	"github.com/TNduna/norma/agentcore"
+	"github.com/TNduna/norma/compaction"
+	"github.com/TNduna/norma/llm"
+	acperm "github.com/TNduna/norma/permission"
+	"github.com/TNduna/norma/transcript"
 )
 
 // Config describes the LLM backend resolved from the environment.

@@ -8,8 +8,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mokerenki/cautious-memory/db"
-	"github.com/mokerenki/cautious-memory/evidence"
+	"github.com/TNduna/VMT-23/db"
+	"github.com/TNduna/VMT-23/evidence"
 )
 
 type failingFindingRecorder struct{}

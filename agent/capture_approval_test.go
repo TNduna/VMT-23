@@ -5,13 +5,13 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/mokerenki/cautious-memory/db"
-	"github.com/mokerenki/cautious-memory/guard"
-	"github.com/mokerenki/cautious-memory/intercept"
-	"github.com/Autumn-27/norma/agentcore"
-	"github.com/Autumn-27/norma/llm"
-	"github.com/Autumn-27/norma/permission"
-	"github.com/Autumn-27/norma/tool"
+	"github.com/TNduna/VMT-23/db"
+	"github.com/TNduna/VMT-23/guard"
+	"github.com/TNduna/VMT-23/intercept"
+	"github.com/TNduna/norma/agentcore"
+	"github.com/TNduna/norma/llm"
+	"github.com/TNduna/norma/permission"
+	"github.com/TNduna/norma/tool"
 )
 
 // Exercise the actual SDK event -> hook -> execution -> result path. No real

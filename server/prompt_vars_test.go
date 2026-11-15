@@ -3,7 +3,7 @@ package server
 import (
 	"testing"
 
-	"github.com/mokerenki/cautious-memory/db"
+	"github.com/TNduna/VMT-23/db"
 )
 
 // A stored catalog entry that collides with a global runtime var (e.g. a legacy

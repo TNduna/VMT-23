@@ -9,8 +9,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mokerenki/cautious-memory/llmrec"
-	"github.com/Autumn-27/norma/llm"
+	"github.com/TNduna/VMT-23/llmrec"
+	"github.com/TNduna/norma/llm"
 )
 
 // End-to-end through a real norma provider: the Capture rides the context into

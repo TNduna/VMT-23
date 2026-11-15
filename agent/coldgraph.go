@@ -19,7 +19,7 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/mokerenki/cautious-memory/db"
+	"github.com/TNduna/VMT-23/db"
 )
 
 // cgNode is the minimal node view the cold-graph algorithms need.

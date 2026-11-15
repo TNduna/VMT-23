@@ -15,12 +15,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/mokerenki/cautious-memory/agent"
-	"github.com/mokerenki/cautious-memory/db"
-	"github.com/mokerenki/cautious-memory/llmrec"
-	"github.com/mokerenki/cautious-memory/sidequestion"
-	"github.com/Autumn-27/norma/llm"
-	"github.com/Autumn-27/norma/transcript"
+	"github.com/TNduna/VMT-23/agent"
+	"github.com/TNduna/VMT-23/db"
+	"github.com/TNduna/VMT-23/llmrec"
+	"github.com/TNduna/VMT-23/sidequestion"
+	"github.com/TNduna/norma/llm"
+	"github.com/TNduna/norma/transcript"
 )
 
 type sideRun struct {

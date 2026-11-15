@@ -8,8 +8,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mokerenki/cautious-memory/db"
-	"github.com/mokerenki/cautious-memory/intercept"
+	"github.com/TNduna/VMT-23/db"
+	"github.com/TNduna/VMT-23/intercept"
 )
 
 func TestInterceptDetailHTTP(t *testing.T) {

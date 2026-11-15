@@ -7,9 +7,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mokerenki/cautious-memory/db"
-	"github.com/mokerenki/cautious-memory/intercept"
-	"github.com/Autumn-27/norma/llm"
+	"github.com/TNduna/VMT-23/db"
+	"github.com/TNduna/VMT-23/intercept"
+	"github.com/TNduna/norma/llm"
 )
 
 type reviewCaptureProvider struct{ request llm.CompletionRequest }

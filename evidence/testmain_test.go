@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/mokerenki/cautious-memory/db"
+	"github.com/TNduna/VMT-23/db"
 )
 
 // Initialize an explicitly configured fresh database before taking the same

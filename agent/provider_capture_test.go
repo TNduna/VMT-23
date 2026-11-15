@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mokerenki/cautious-memory/llmrec"
+	"github.com/TNduna/VMT-23/llmrec"
 )
 
 // The transport is the only layer that still sees the wire bodies: norma builds

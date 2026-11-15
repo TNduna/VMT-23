@@ -6,9 +6,9 @@ import (
 	"iter"
 	"testing"
 
-	"github.com/mokerenki/cautious-memory/db"
-	"github.com/Autumn-27/norma/agentcore"
-	"github.com/Autumn-27/norma/llm"
+	"github.com/TNduna/VMT-23/db"
+	"github.com/TNduna/norma/agentcore"
+	"github.com/TNduna/norma/llm"
 )
 
 type captureUsageProvider struct {

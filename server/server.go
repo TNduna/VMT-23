@@ -19,16 +19,16 @@ import (
 	"sync"
 	"time"
 
-	"github.com/mokerenki/cautious-memory/agent"
-	"github.com/mokerenki/cautious-memory/db"
-	"github.com/mokerenki/cautious-memory/intercept"
-	"github.com/mokerenki/cautious-memory/llmpool"
-	"github.com/mokerenki/cautious-memory/llmrec"
-	"github.com/mokerenki/cautious-memory/report"
-	"github.com/mokerenki/cautious-memory/traffic"
-	"github.com/Autumn-27/norma/llm"
-	actool "github.com/Autumn-27/norma/tool"
-	"github.com/Autumn-27/norma/transcript"
+	"github.com/TNduna/VMT-23/agent"
+	"github.com/TNduna/VMT-23/db"
+	"github.com/TNduna/VMT-23/intercept"
+	"github.com/TNduna/VMT-23/llmpool"
+	"github.com/TNduna/VMT-23/llmrec"
+	"github.com/TNduna/VMT-23/report"
+	"github.com/TNduna/VMT-23/traffic"
+	"github.com/TNduna/norma/llm"
+	actool "github.com/TNduna/norma/tool"
+	"github.com/TNduna/norma/transcript"
 )
 
 // BuildVersion is the backend application version, injected from cmd/artex at

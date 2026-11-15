@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/mokerenki/cautious-memory/agent"
-	"github.com/mokerenki/cautious-memory/db"
+	"github.com/TNduna/VMT-23/agent"
+	"github.com/TNduna/VMT-23/db"
 )
 
 const maxBatchControlIDs = 100

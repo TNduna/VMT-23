@@ -7,13 +7,13 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/mokerenki/cautious-memory/db"
-	"github.com/mokerenki/cautious-memory/intercept"
-	"github.com/Autumn-27/norma/agentcore"
-	"github.com/Autumn-27/norma/llm"
-	"github.com/Autumn-27/norma/permission"
-	actool "github.com/Autumn-27/norma/tool"
-	"github.com/Autumn-27/norma/transcript"
+	"github.com/TNduna/VMT-23/db"
+	"github.com/TNduna/VMT-23/intercept"
+	"github.com/TNduna/norma/agentcore"
+	"github.com/TNduna/norma/llm"
+	"github.com/TNduna/norma/permission"
+	actool "github.com/TNduna/norma/tool"
+	"github.com/TNduna/norma/transcript"
 )
 
 // Planner is the event-driven LLM planner (docs §4.3): each time the asset or

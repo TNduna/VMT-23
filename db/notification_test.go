@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mokerenki/cautious-memory/notify"
+	"github.com/TNduna/VMT-23/notify"
 )
 
 // 本文件的用例都会真连 PostgreSQL（无库时跳过）。这些 SQL 用到了

@@ -7,9 +7,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/mokerenki/cautious-memory/db"
-	acperm "github.com/Autumn-27/norma/permission"
-	actool "github.com/Autumn-27/norma/tool"
+	"github.com/TNduna/VMT-23/db"
+	acperm "github.com/TNduna/norma/permission"
+	actool "github.com/TNduna/norma/tool"
 )
 
 // compactIntents distills intents to {id, summary, state, asset_ids, parents,

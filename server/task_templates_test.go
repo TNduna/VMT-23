@@ -11,7 +11,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mokerenki/cautious-memory/db"
+	"github.com/TNduna/VMT-23/db"
 )
 
 func TestTaskTemplateHTTPCRUD(t *testing.T) {

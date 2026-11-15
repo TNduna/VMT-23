@@ -3,7 +3,7 @@ package agent
 import (
 	"strings"
 
-	"github.com/mokerenki/cautious-memory/db"
+	"github.com/TNduna/VMT-23/db"
 )
 
 // constraintBlock renders this task's operation constraints (task_constraints) as a

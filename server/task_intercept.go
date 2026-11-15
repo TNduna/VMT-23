@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/mokerenki/cautious-memory/db"
+	"github.com/TNduna/VMT-23/db"
 )
 
 // 任务级资产拦截/允许规则的 CRUD。规则按 task_id 归属，仅对该任务生效：

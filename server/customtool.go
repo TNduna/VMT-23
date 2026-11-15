@@ -17,9 +17,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mokerenki/cautious-memory/db"
-	"github.com/Autumn-27/norma/permission"
-	actool "github.com/Autumn-27/norma/tool"
+	"github.com/TNduna/VMT-23/db"
+	"github.com/TNduna/norma/permission"
+	actool "github.com/TNduna/norma/tool"
 )
 
 // This file implements the custom tool executor (custom tool design doc). Rows in

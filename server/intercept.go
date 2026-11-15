@@ -11,11 +11,11 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/mokerenki/cautious-memory/db"
-	"github.com/mokerenki/cautious-memory/guard"
-	"github.com/mokerenki/cautious-memory/intercept"
-	"github.com/mokerenki/cautious-memory/llmrec"
-	"github.com/Autumn-27/norma/llm"
+	"github.com/TNduna/VMT-23/db"
+	"github.com/TNduna/VMT-23/guard"
+	"github.com/TNduna/VMT-23/intercept"
+	"github.com/TNduna/VMT-23/llmrec"
+	"github.com/TNduna/norma/llm"
 )
 
 // judgeWorkerLane is the usage-ledger "worker" label for intercept fallback-judge

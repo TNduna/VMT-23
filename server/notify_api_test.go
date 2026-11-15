@@ -13,8 +13,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mokerenki/cautious-memory/db"
-	"github.com/mokerenki/cautious-memory/notify"
+	"github.com/TNduna/VMT-23/db"
+	"github.com/TNduna/VMT-23/notify"
 )
 
 // 本文件覆盖推送功能的端到端行为：漏洞落库 → 事件 → 分派 → 真发 HTTP。

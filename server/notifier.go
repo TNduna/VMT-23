@@ -8,8 +8,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/mokerenki/cautious-memory/db"
-	"github.com/mokerenki/cautious-memory/notify"
+	"github.com/TNduna/VMT-23/db"
+	"github.com/TNduna/VMT-23/notify"
 )
 
 // 全局设置键（存在 settings 键值表里，无需建表）。

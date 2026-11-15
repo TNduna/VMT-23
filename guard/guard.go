@@ -14,8 +14,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/mokerenki/cautious-memory/intercept"
-	"github.com/Autumn-27/norma/hook"
+	"github.com/TNduna/VMT-23/intercept"
+	"github.com/TNduna/norma/hook"
 )
 
 // AuditEntry records one gated tool call.

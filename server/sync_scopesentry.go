@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mokerenki/cautious-memory/db"
-	"github.com/mokerenki/cautious-memory/mcphttp"
+	"github.com/TNduna/VMT-23/db"
+	"github.com/TNduna/VMT-23/mcphttp"
 )
 
 // 资产同步（ScopeSentry 数据源）。

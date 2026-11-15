@@ -46,7 +46,7 @@ The global "Approval Records" page, the "Interception & Approval" tab within a t
 
 ## Asset Synchronization (ScopeSentry)
 
-Supports direct synchronization of asset data from [ScopeSentry](https://github.com/Autumn-27/ScopeSentry), eliminating duplicate collection:
+Supports direct synchronization of asset data from [ScopeSentry](https://github.com/TNduna/ScopeSentry), eliminating duplicate collection:
 
 - On the **Asset Sync** page, enter the ScopeSentry address and API Key to connect the data source;
 - Select the targets and asset types to sync (domains / subdomains / IPs / ports / sites / endpoints…) by **project** or **task** dimension;
@@ -79,7 +79,7 @@ Once installed, open **http://localhost:8787** (on first visit, go to `/setup` t
 git clone https://github.com/TNduna/VMT-23.git
 cd VMT-23
 cp .env.example .env          # fill in POSTGRES_PASSWORD, optionally ANTHROPIC_API_KEY
-docker compose up -d          # pulls the autumn27/vmt-23 image + postgres
+docker compose up -d          # pulls the tnduna/vmt-23 image + postgres
 # → http://localhost:8787
 ```
 
@@ -270,7 +270,7 @@ In this version, retest history is viewed via the vulnerability detail and sessi
 
 ## System Architecture
 
-VMT-23 is an **LLM multi-agent-driven autonomous penetration testing system**: a Go monolithic backend (embedding the Next.js frontend) + PostgreSQL. Agent capabilities are provided by the [`norma`](https://github.com/Autumn-27/norma) SDK (`agentcore` / `tool` / `permission` / `harness` / `memory` / `transcript`). The core is a **dual-graph architecture**, together with two autonomy mechanisms built around it: **process-level information exchange between workers** and a **planner multi-round shared todolist that stabilizes attack chains**.
+VMT-23 is an **LLM multi-agent-driven autonomous penetration testing system**: a Go monolithic backend (embedding the Next.js frontend) + PostgreSQL. Agent capabilities are provided by the [`norma`](https://github.com/TNduna/norma) SDK (`agentcore` / `tool` / `permission` / `harness` / `memory` / `transcript`). The core is a **dual-graph architecture**, together with two autonomy mechanisms built around it: **process-level information exchange between workers** and a **planner multi-round shared todolist that stabilizes attack chains**.
 
 ### Overall Layers
 

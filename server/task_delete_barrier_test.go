@@ -12,7 +12,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mokerenki/cautious-memory/agent"
+	"github.com/TNduna/VMT-23/agent"
 )
 
 func TestEngineDeleteBarrierRejectsNewTaskOperations(t *testing.T) {

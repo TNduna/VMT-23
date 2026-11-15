@@ -4,10 +4,10 @@ import (
 	"log"
 	"time"
 
-	"github.com/mokerenki/cautious-memory/agent"
-	"github.com/mokerenki/cautious-memory/db"
-	"github.com/mokerenki/cautious-memory/llmpool"
-	"github.com/Autumn-27/norma/llm"
+	"github.com/TNduna/VMT-23/agent"
+	"github.com/TNduna/VMT-23/db"
+	"github.com/TNduna/VMT-23/llmpool"
+	"github.com/TNduna/norma/llm"
 )
 
 // LLM 轮询(故障转移)的服务端接线。设计见 docs/LLM轮询设计.md：

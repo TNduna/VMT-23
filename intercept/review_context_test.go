@@ -7,7 +7,7 @@ import (
 	"testing"
 	"unicode/utf8"
 
-	"github.com/mokerenki/cautious-memory/db"
+	"github.com/TNduna/VMT-23/db"
 )
 
 func TestReviewInputIgnoresAuditHistoryAndPreservesCurrentCall(t *testing.T) {

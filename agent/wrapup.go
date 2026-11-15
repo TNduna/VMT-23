@@ -3,7 +3,7 @@ package agent
 import (
 	"strings"
 
-	"github.com/Autumn-27/norma/harness"
+	"github.com/TNduna/norma/harness"
 )
 
 // Wrap-up / settlement prompt: when an agent is terminated due to [turn budget exhaustion

@@ -6,10 +6,10 @@ import (
 	"log"
 	"time"
 
-	"github.com/mokerenki/cautious-memory/db"
-	"github.com/mokerenki/cautious-memory/mcphttp"
-	"github.com/Autumn-27/norma/mcp"
-	actool "github.com/Autumn-27/norma/tool"
+	"github.com/TNduna/VMT-23/db"
+	"github.com/TNduna/VMT-23/mcphttp"
+	"github.com/TNduna/norma/mcp"
+	actool "github.com/TNduna/norma/tool"
 )
 
 // mcpClient is the shared surface of a connected MCP server (stdio, Streamable HTTP,

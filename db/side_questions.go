@@ -7,7 +7,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/mokerenki/cautious-memory/sidequestion"
+	"github.com/TNduna/VMT-23/sidequestion"
 	"github.com/google/uuid"
 )
 

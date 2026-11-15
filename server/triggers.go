@@ -3,7 +3,7 @@ package server
 import (
 	"net/http"
 
-	"github.com/mokerenki/cautious-memory/db"
+	"github.com/TNduna/VMT-23/db"
 )
 
 // ---------- P3 agent triggers (仅自定义 agent) ----------

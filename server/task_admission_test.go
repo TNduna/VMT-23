@@ -11,8 +11,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mokerenki/cautious-memory/agent"
-	"github.com/mokerenki/cautious-memory/db"
+	"github.com/TNduna/VMT-23/agent"
+	"github.com/TNduna/VMT-23/db"
 )
 
 func newAdmissionTestServer(m *Manager, available func(*Task) bool) *Server {

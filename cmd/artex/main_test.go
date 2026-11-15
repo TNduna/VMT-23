@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/mokerenki/cautious-memory/agent"
+	"github.com/TNduna/VMT-23/agent"
 )
 
 func TestShutdownContextPreservesNamedCause(t *testing.T) {

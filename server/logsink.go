@@ -9,7 +9,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/mokerenki/cautious-memory/db"
+	"github.com/TNduna/VMT-23/db"
 )
 
 // LogLine is one captured backend log entry exposed by the /api/logs endpoints.

@@ -10,9 +10,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mokerenki/cautious-memory/db"
-	"github.com/mokerenki/cautious-memory/evidence"
-	"github.com/mokerenki/cautious-memory/report"
+	"github.com/TNduna/VMT-23/db"
+	"github.com/TNduna/VMT-23/evidence"
+	"github.com/TNduna/VMT-23/report"
 )
 
 func writeFindingsEvidenceZip(out io.Writer, findings []*db.DBFinding, stage string, now time.Time) error {

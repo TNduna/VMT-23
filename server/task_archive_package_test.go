@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	pgdb "github.com/mokerenki/cautious-memory/db"
+	pgdb "github.com/TNduna/VMT-23/db"
 	"github.com/klauspost/compress/zstd"
 )
 

@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mokerenki/cautious-memory/config"
+	"github.com/TNduna/VMT-23/config"
 	"github.com/jackc/pgx/v5/pgconn"
 	_ "github.com/jackc/pgx/v5/stdlib" // pgx database/sql driver ("pgx")
 )
