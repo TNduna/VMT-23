@@ -1,0 +1,23 @@
+{
+  "_comment": "Copy this file to config.json (or set another path with the VMT23_CONFIG environment variable). This file contains only database and skill_dir; configure LLM and other settings through environment variables or the application.",
+
+  "_comment_database": "PostgreSQL connection. Priority: VMT23_PG_DSN environment variable > database in this file. Choose one format: (A) fill in the fields below; (B) provide a complete connection string in database.dsn.",
+  "database": {
+    "host": "127.0.0.1",
+    "port": 5433,
+    "user": "vmt23",
+    "password": "",
+    "dbname": "vmt23",
+    "sslmode": "disable"
+  },
+
+  "_comment_database_dsn": "Format (B): remove the database block above and use a complete DSN. Individual fields are ignored when dsn is non-empty.",
+  "_example_database_dsn": {
+    "database": {
+      "dsn": "postgres://user:pass@db.example.com:5432/vmt23?sslmode=require"
+    }
+  },
+
+  "_comment_skill_dir": "Root directory for skills (each subdirectory contains one skill and its SKILL.md). Priority: VMT23_SKILL_DIR environment variable > this field > default (skills/ next to the executable). Leave empty or remove this field to use the default. Relative paths are resolved from the current working directory.",
+  "skill_dir": "/opt/vmt-23/skills"
+}

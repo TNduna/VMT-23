@@ -1,0 +1,64 @@
+# backend
+/data/
+*.db
+*.db-wal
+*.db-shm
+config.json
+scheduler_state.json
+__pycache__/
+*.pyc
+*.pyo
+
+# frontend
+web/node_modules/
+web/.next/
+web/out/
+web/tsconfig.tsbuildinfo
+web/next-env.d.ts
+*.local
+
+# development tools
+.playwright-mcp/
+.playwright-cli/
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# docs
+/docs/
+
+# os
+.DS_Store
+Thumbs.db
+
+# claude code local state
+.claude/
+
+# Embedded-frontend single-binary artifacts
+/artex
+/artex.exe
+/vmt-23
+/vmt-23.exe
+# Intermediate artifacts left beside the executable by one-click updates (staging, backups, failed versions, upgrade markers)
+/artex.new
+/artex.new.sha256
+/artex.old
+/artex.failed
+/artex.upgrade.json
+/server/webui/dist/
+/dist/
+
+# JWT signing key (generated at runtime, stored in the project root; never commit)
+/jwt.key
+
+# Local environment generated for Docker deployment (contains passwords/secrets; do not commit)
+.env
+
+# Event logs produced by scheduler runs/simulations (test artifacts; do not commit)
+*-events.csv
+
+# Benchmark-related local artifacts (do not commit)
+/bench/
+/Dockerfile.bench
+/Dockerfile.bench.v2

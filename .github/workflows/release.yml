@@ -1,0 +1,135 @@
+name: release
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write # required to create a Release
+
+jobs:
+  # ① Export frontend static assets once for reuse across cross-platform builds
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
+        working-directory: web
+      - run: npm run build:static
+        working-directory: web
+      - uses: actions/upload-artifact@v4
+        with:
+          name: web-dist
+          path: web/out
+
+  # ② Cross-compile for five platforms (with embedded frontend) and create ZIP archives
+  binaries:
+    needs: frontend
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - { goos: linux, goarch: amd64 }
+          - { goos: linux, goarch: arm64 }
+          - { goos: darwin, goarch: amd64 }
+          - { goos: darwin, goarch: arm64 }
+          - { goos: windows, goarch: amd64 }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.26"
+          cache: true
+      - uses: actions/download-artifact@v4
+        with:
+          name: web-dist
+          path: server/webui/dist
+      - name: Build and package with build.sh
+        env:
+          ARTEX_TARGET_OS: ${{ matrix.goos }}
+          ARTEX_TARGET_ARCH: ${{ matrix.goarch }}
+          ARTEX_BUILD_VERSION: ${{ github.ref_name }}
+          ARTEX_SKIP_FRONTEND: "1"
+          ARTEX_SKIP_NPM_CI: "1"
+          # UPX self-extracting ELF binaries may crash with some Linux kernels, virtualization, and security policies.
+          # Release builds use Go linker stripping and ZIP compression, prioritizing portability.
+          ARTEX_COMPRESS: "0"
+          ARTEX_PACKAGE: "1"
+          ARTEX_PACKAGE_DIR: dist
+        run: |
+          ./build.sh --target "${ARTEX_TARGET_OS}/${ARTEX_TARGET_ARCH}"
+      - name: Smoke test Linux amd64 binary
+        if: matrix.goos == 'linux' && matrix.goarch == 'amd64'
+        run: dist/artex-linux-amd64/artex -h
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pkg-${{ matrix.goos }}-${{ matrix.goarch }}
+          path: "dist/*.zip"
+      # Upload the Linux binary separately for reuse by the Docker job (avoids rebuilding the frontend and Go in the image)
+      - if: matrix.goos == 'linux'
+        uses: actions/upload-artifact@v4
+        with:
+          name: bin-linux-${{ matrix.goarch }}
+          path: dist/artex-linux-${{ matrix.goarch }}/artex
+
+  # ③ Collect all ZIP files → create a GitHub Release
+  release:
+    needs: binaries
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: pkg-*
+          merge-multiple: true
+          path: dist
+      - name: Generate checksums
+        working-directory: dist
+        run: sha256sum *.zip > SHA256SUMS
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/*.zip
+            dist/SHA256SUMS
+          generate_release_notes: true
+
+  # ④ Multi-architecture images → push to Docker Hub (reuse the Linux binary built by the binaries job,
+  #    the image only installs tools and copies the binary; arm64 only needs to emulate the apt layer, making builds much faster)
+  docker:
+    needs: binaries
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4 # Fetch the Dockerfile and skills/
+      - uses: actions/download-artifact@v4
+        with:
+          name: bin-linux-amd64
+          path: dist/amd64
+      - uses: actions/download-artifact@v4
+        with:
+          name: bin-linux-arm64
+          path: dist/arm64
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - uses: docker/metadata-action@v5
+        id: meta
+        with:
+          images: mokerenki/cautious-memory
+          tags: |
+            type=ref,event=tag
+            type=raw,value=latest
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

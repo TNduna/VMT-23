@@ -1,0 +1,27 @@
+# VMT-23 Tencent TSec Benchmark image—build and run locally in one step.
+# Independent of the production docker-compose.yml (multiple services: vmt-23 + postgres).
+# Usage:
+#   cp bench/.env.example bench/.env   # Set LLM_API_KEY / BENCHMARK_TOKEN, etc.
+#   docker compose -f docker-compose.bench.yml up --build      # Build and run in the foreground (view logs)
+#   docker compose -f docker-compose.bench.yml up --build -d   # run in the background
+#   docker compose -f docker-compose.bench.yml logs -f
+#   docker compose -f docker-compose.bench.yml down            # Stop (add -v to also delete the data volume)
+# Browser:http://localhost:8787 (use ADMIN_PASSWORD to sign in)
+
+services:
+  vmt23-bench:
+    build:
+      context: .
+      dockerfile: Dockerfile.bench
+    image: vmt23-bench:latest
+    container_name: vmt23-bench
+    env_file:
+      - bench/.env
+    # Share the host machine's network: the container uses the host network stack and can directly reach targets on the host/VPN network.
+    # In host mode, no ports mapping is needed; the container binds directly to host ports:8787 (UI/API), 8788 (proxy),
+    # and internal PostgreSQL 5432 — ensure these three host ports are available (stop any services using them before local testing).
+    network_mode: host
+    restart: "no"
+
+volumes:
+  vmt23_bench_data:
