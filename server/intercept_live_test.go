@@ -11,7 +11,7 @@ import (
 	"github.com/TNduna/VMT-23/agent"
 	"github.com/TNduna/VMT-23/db"
 	"github.com/TNduna/VMT-23/intercept"
-	"github.com/TNduna/norma/llm"
+	"github.com/Autumn-27/norma/llm"
 )
 
 // Opt-in model regression: sends synthetic review inputs only, never executes

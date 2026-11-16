@@ -12,8 +12,8 @@ import (
 	"time"
 
 	"github.com/TNduna/VMT-23/db"
-	"github.com/TNduna/norma/llm"
-	"github.com/TNduna/norma/transcript"
+	"github.com/Autumn-27/norma/llm"
+	"github.com/Autumn-27/norma/transcript"
 )
 
 type taskIDContextKey struct{}

@@ -30,9 +30,9 @@ import (
 	"time"
 	"unicode/utf8"
 
+	"github.com/Autumn-27/norma/permission"
+	actool "github.com/Autumn-27/norma/tool"
 	"github.com/TNduna/VMT-23/db"
-	"github.com/TNduna/norma/permission"
-	actool "github.com/TNduna/norma/tool"
 	mproxy "github.com/lqqyt2423/go-mitmproxy/proxy"
 	_ "modernc.org/sqlite"
 )
@@ -131,7 +131,7 @@ const (
 // TrafficSearchDescription is persisted into the tool catalog for new and
 // upgraded installations. Keep it in the traffic package so the runtime tool
 // and the catalog migration cannot drift apart.
-const TrafficSearchDescription = "查询记录代理已抓取的目标流量（必须指定 host；支持裸主机、主机:端口或完整 URL，可再按 URL 子串或正文关键词过滤）。指定端口时只返回该服务的流量，避免同一 IP 的不同端口串包。body_contains 会在已抓取的请求/响应头与正文中做全文搜索，支持任意子串和中文（至少 3 个字符）。仅返回极轻量索引(id/method/url/status/resp_len)，不含响应内容；结果非空后必须用 traffic_get 逐条核实请求/响应，再把确实支持当前漏洞的 ID 交给 bind_finding_traffic。默认只返回 3 条、每页最多 10 条；结果多时用 page 翻页。"
+const TrafficSearchDescription = "Query target traffic captured by the recording proxy (host is required; supports bare host, host:port, or full URL, and can be further filtered by URL substring or body keyword). Specifying a port returns traffic only for that service, preventing cross-port mixing on the same IP. body_contains performs full-text search across captured request/response headers and bodies, supporting arbitrary substrings and CJK (at least 3 characters). Returns only a lightweight index (id/method/url/status/resp_len) without response content; when results are non-empty, you must inspect requests/responses one by one with traffic_get and pass only the IDs that genuinely support the current vulnerability to bind_finding_traffic. Returns 3 items by default, up to 10 per page; use page to paginate when there are many results."
 
 // Traffic runs the recording proxy and owns the file tree + index.
 type Traffic struct {
@@ -334,17 +334,17 @@ func ValidateProxyURL(raw string) (*url.URL, error) {
 	raw = strings.TrimSpace(raw)
 	u, err := url.Parse(raw)
 	if err != nil {
-		return nil, fmt.Errorf("解析代理地址 %q: %w", raw, err)
+		return nil, fmt.Errorf("parse proxy URL %q: %w", raw, err)
 	}
 	switch u.Scheme {
 	case "http", "https", "socks5":
 	case "":
-		return nil, fmt.Errorf("代理 %q 缺少协议(用 http://、https:// 或 socks5://)", raw)
+		return nil, fmt.Errorf("proxy %q is missing scheme (use http://, https://, or socks5://)", raw)
 	default:
-		return nil, fmt.Errorf("不支持的代理协议 %q(用 http、https 或 socks5)", u.Scheme)
+		return nil, fmt.Errorf("unsupported proxy scheme %q (use http, https, or socks5)", u.Scheme)
 	}
 	if u.Host == "" {
-		return nil, fmt.Errorf("代理 %q 缺少主机地址", raw)
+		return nil, fmt.Errorf("proxy %q is missing host address", raw)
 	}
 	return u, nil
 }
@@ -689,7 +689,7 @@ func (t *Traffic) blobPath(hash string) (string, error) {
 	// Validated as pure hex before touching the filesystem, so a crafted hash can
 	// never traverse out of the blob directory.
 	if !blobHashRe.MatchString(hash) {
-		return "", fmt.Errorf("非法的 blob hash")
+		return "", fmt.Errorf("invalid blob hash")
 	}
 	for _, p := range []string{
 		filepath.Join(t.dir, "_blobs", "sha256", hash[:2], hash+".bin"),
@@ -699,7 +699,7 @@ func (t *Traffic) blobPath(hash string) (string, error) {
 			return p, nil
 		}
 	}
-	return "", fmt.Errorf("blob %s 不存在", hash)
+	return "", fmt.Errorf("blob %s does not exist", hash)
 }
 
 // Blob opens a spilled body for streaming; the caller must close the file.
@@ -967,7 +967,7 @@ FROM exchange_bodies b JOIN exchanges e ON e.id=b.id WHERE b.id=?`, id).
 		return "", "", err
 	}
 	if strings.TrimSpace(rel) == "" {
-		return "", "", fmt.Errorf("exchange %s 无正文记录", id)
+		return "", "", fmt.Errorf("exchange %s has no body record", id)
 	}
 	rb, _ := os.ReadFile(filepath.Join(t.dir, rel, "request.http"))
 	pb, _ := os.ReadFile(filepath.Join(t.dir, rel, "response.http"))
@@ -1934,9 +1934,9 @@ func (t *Traffic) query(host, contains, bodyContains string, page, limit int) ([
 		cond, arg, ok := t.ftsFilter(b)
 		if !ok {
 			if !t.fts {
-				return nil, fmt.Errorf("当前实例未启用全文索引，无法按正文搜索")
+				return nil, fmt.Errorf("Full-text index is not enabled on this instance; body search is unavailable")
 			}
-			return nil, fmt.Errorf("正文搜索关键词至少需要 %d 个字符（当前 %d 个）", minTrigram, utf8.RuneCountInString(b))
+			return nil, fmt.Errorf("Body search keyword requires at least %d characters (got %d)", minTrigram, utf8.RuneCountInString(b))
 		}
 		q += ` AND ` + cond
 		args = append(args, arg)
@@ -1966,12 +1966,12 @@ func (t *Traffic) query(host, contains, bodyContains string, page, limit int) ([
 func normalizeSearchHost(raw string) (host, port string, err error) {
 	raw = strings.TrimSpace(raw)
 	if raw == "" {
-		return "", "", errors.New("host 为必填参数")
+		return "", "", errors.New("host is a required parameter")
 	}
 	if strings.Contains(raw, "://") {
 		u, parseErr := url.Parse(raw)
 		if parseErr != nil || u.Host == "" {
-			return "", "", fmt.Errorf("无法解析 host：%q", raw)
+			return "", "", fmt.Errorf("unable to parse host: %q", raw)
 		}
 		host, port = u.Hostname(), u.Port()
 	} else if h, p, splitErr := net.SplitHostPort(raw); splitErr == nil {
@@ -1983,12 +1983,12 @@ func normalizeSearchHost(raw string) (host, port string, err error) {
 	}
 	host = strings.Trim(strings.TrimSpace(host), "[]")
 	if host == "" {
-		return "", "", fmt.Errorf("无法解析 host：%q", raw)
+		return "", "", fmt.Errorf("unable to parse host: %q", raw)
 	}
 	if port != "" {
 		p, parseErr := strconv.Atoi(port)
 		if parseErr != nil || p < 1 || p > 65535 {
-			return "", "", fmt.Errorf("端口无效：%q", port)
+			return "", "", fmt.Errorf("invalid port: %q", port)
 		}
 		port = strconv.Itoa(p)
 	}
@@ -2009,11 +2009,11 @@ func (t *Traffic) Tools() []actool.CoreTool {
 		Schema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
-				"host":          map[string]any{"type": "string", "description": "按主机过滤（必填；如 '107.172.96.177'、'107.172.96.177:8082' 或 'http://107.172.96.177:8082/path'）"},
-				"contains":      map[string]any{"type": "string", "description": "URL 子串过滤（可选，如 'api' / 'login'）"},
-				"body_contains": map[string]any{"type": "string", "description": "正文全文搜索（可选，至少 3 个字符），匹配请求/响应的头与正文，如 'password' / 'root:x:0' / '内网测试'"},
-				"limit":         map[string]any{"type": "integer", "description": "每页条数，默认 3，最大 10"},
-				"page":          map[string]any{"type": "integer", "description": "页码，从 0 开始，默认 0（按 ts 倒序分页）"},
+				"host":          map[string]any{"type": "string", "description": "Filter by host (required; e.g., '107.172.96.177', '107.172.96.177:8082', or 'http://107.172.96.177:8082/path')"},
+				"contains":      map[string]any{"type": "string", "description": "URL substring filter (optional, e.g., 'api' / 'login')"},
+				"body_contains": map[string]any{"type": "string", "description": "Full-text body search (optional, at least 3 characters), matching request/response headers and bodies, e.g., 'password' / 'root:x:0' / 'internal'"},
+				"limit":         map[string]any{"type": "integer", "description": "Items per page, default 3, max 10"},
+				"page":          map[string]any{"type": "integer", "description": "Page number, 0-indexed, default 0 (paginated by timestamp descending)"},
 			},
 			"required": []any{"host"},
 		},
@@ -2028,16 +2028,16 @@ func (t *Traffic) Tools() []actool.CoreTool {
 			}
 			_ = json.Unmarshal(in, &a)
 			if strings.TrimSpace(a.Host) == "" {
-				return actool.Errorf("host 为必填参数：请指定裸主机、主机:端口或完整 URL，避免全库扫描。"), nil
+				return actool.Errorf("host is a required parameter: please specify a bare host, host:port, or full URL to avoid a full table scan."), nil
 			}
 			rows, err := t.query(a.Host, a.Contains, a.BodyContains, a.Page, a.Limit)
 			if err != nil {
 				return actool.Errorf(err.Error()), nil
 			}
 			if len(rows) == 0 {
-				return actool.Text("无匹配流量。"), nil
+				return actool.Text("No matching traffic."), nil
 			}
-			// 精简为最小索引：仅保留定位所需字段 + 响应码/长度，不带任何响应内容。
+			// Trimmed to minimal index: keeps only locating fields + status/resp_len, without any response body.
 			type liteRow struct {
 				ID      string `json:"id"`
 				Method  string `json:"method"`
@@ -2056,10 +2056,10 @@ func (t *Traffic) Tools() []actool.CoreTool {
 
 	get := actool.Build(actool.Spec{
 		Name:        "traffic_get",
-		Description: "按 id 取一条已抓流量的请求/响应原文（过大会截断）。配合 traffic_search 用，避免重复 curl。",
+		Description: "Fetch the raw request and response text of a captured traffic entry by id (truncated if too large). Use alongside traffic_search to avoid redundant curl requests.",
 		Schema: map[string]any{
 			"type":       "object",
-			"properties": map[string]any{"id": map[string]any{"type": "string", "description": "traffic_search 返回的 id"}},
+			"properties": map[string]any{"id": map[string]any{"type": "string", "description": "id returned by traffic_search"}},
 			"required":   []any{"id"},
 		},
 		ReadOnly:    ro,
@@ -2077,13 +2077,13 @@ func (t *Traffic) Tools() []actool.CoreTool {
 
 	blob := actool.Build(actool.Spec{
 		Name:        "traffic_blob",
-		Description: "分段读取超大请求/响应体的原文。traffic_get 里显示为 '…[truncated] @blob sha256:<hash>' 的部分即存放于此，把该 hash 传进来即可取完整内容。单次最多返回 8KB，用 offset 继续往后读（返回结果会给出总长度）。适合翻阅备份文件、源码泄露、大 JSON 导出等超过内联阈值的响应。",
+		Description: "Read raw content of oversized request/response bodies in chunks. Content shown in traffic_get as '…[truncated] @blob sha256:<hash>' is stored here; pass that hash to retrieve the full content. Returns up to 8KB per call; use offset to continue reading (the response includes total length). Useful for inspecting backup files, source code leaks, or large JSON exports that exceed the inline threshold.",
 		Schema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
-				"hash":   map[string]any{"type": "string", "description": "traffic_get 中 @blob sha256: 后面的 64 位十六进制值"},
-				"offset": map[string]any{"type": "integer", "description": "起始字节偏移，默认 0"},
-				"length": map[string]any{"type": "integer", "description": "本次读取字节数，默认且最大 8192"},
+				"hash":   map[string]any{"type": "string", "description": "64-character hex value following '@blob sha256:' in traffic_get"},
+				"offset": map[string]any{"type": "integer", "description": "Starting byte offset, default 0"},
+				"length": map[string]any{"type": "integer", "description": "Number of bytes to read in this call, default and max 8192"},
 			},
 			"required": []any{"hash"},
 		},
@@ -2104,11 +2104,11 @@ func (t *Traffic) Tools() []actool.CoreTool {
 				return actool.Errorf(err.Error()), nil
 			}
 			if len(data) == 0 {
-				return actool.Text(fmt.Sprintf("偏移 %d 已超出内容长度（总长 %d 字节）。", a.Offset, total)), nil
+				return actool.Text(fmt.Sprintf("Offset %d exceeds content length (total %d bytes).", a.Offset, total)), nil
 			}
-			head := fmt.Sprintf("[offset=%d 本次=%d 总长=%d]\n", a.Offset, len(data), total)
+			head := fmt.Sprintf("[offset=%d read=%d total=%d]\n", a.Offset, len(data), total)
 			if isBinaryBody("", data) {
-				return actool.Text(head + "二进制内容，以十六进制展示前 512 字节：\n" + hex.EncodeToString(clipBytes(data, 512))), nil
+				return actool.Text(head + "Binary content, showing first 512 bytes in hex:\n" + hex.EncodeToString(clipBytes(data, 512))), nil
 			}
 			return actool.Text(head + truncateUTF8(data, len(data))), nil
 		},
@@ -2126,5 +2126,5 @@ func clip(s string, max int) string {
 	if len(s) <= max {
 		return s
 	}
-	return s[:max] + fmt.Sprintf("\n... [截断，共 %d 字节；完整在流量文件树] ...", len(s))
+	return s[:max] + fmt.Sprintf("\n... [truncated, %d bytes total; full content in traffic store] ...", len(s))
 }

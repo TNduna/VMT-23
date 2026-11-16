@@ -15,7 +15,7 @@ import (
 	"time"
 
 	"github.com/TNduna/VMT-23/intercept"
-	"github.com/TNduna/norma/hook"
+	"github.com/Autumn-27/norma/hook"
 )
 
 // AuditEntry records one gated tool call.

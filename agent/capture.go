@@ -9,9 +9,9 @@ import (
 	"github.com/TNduna/VMT-23/db"
 	"github.com/TNduna/VMT-23/intercept"
 	"github.com/TNduna/VMT-23/sidequestion"
-	"github.com/TNduna/norma/agentcore"
-	"github.com/TNduna/norma/harness"
-	"github.com/TNduna/norma/llm"
+	"github.com/Autumn-27/norma/agentcore"
+	"github.com/Autumn-27/norma/harness"
+	"github.com/Autumn-27/norma/llm"
 )
 
 // captureRun drives one agent turn-to-completion over Session.Prompt and emits a

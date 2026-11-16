@@ -25,7 +25,9 @@ export const auth = {
 
   clearToken(): void {
     localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem("artex_token");
     document.cookie = `${TOKEN_KEY}=; path=/; max-age=0`;
+    document.cookie = "artex_token=; path=/; max-age=0";
   },
 
   // Parse the current user from the JWT payload's sub field; for display only, no signature verification.

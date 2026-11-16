@@ -11,8 +11,8 @@ import (
 	"github.com/TNduna/VMT-23/agent"
 	"github.com/TNduna/VMT-23/db"
 	"github.com/TNduna/VMT-23/traffic"
-	"github.com/TNduna/norma/skill"
-	actool "github.com/TNduna/norma/tool"
+	"github.com/Autumn-27/norma/skill"
+	actool "github.com/Autumn-27/norma/tool"
 )
 
 // wireAgentAugment connects the PG agent_visibility table into the agent runtime:

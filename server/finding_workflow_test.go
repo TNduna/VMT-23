@@ -8,9 +8,9 @@ import (
 	"strings"
 	"testing"
 
+	actool "github.com/Autumn-27/norma/tool"
 	"github.com/TNduna/VMT-23/agent"
 	"github.com/TNduna/VMT-23/db"
-	actool "github.com/TNduna/norma/tool"
 )
 
 func workflowCall(t *testing.T, ctx context.Context, tool actool.CoreTool, input any, wantError bool) string {
@@ -131,7 +131,7 @@ func TestFindingWorkflowAutoHintToPlannerAndSetting(t *testing.T) {
 	}
 	workflowCall(t, ctx, s.toolGetFindingTraffic(), map[string]any{"finding_id": recorded.FindingID}, false)
 	wrong := workflowCall(t, ctx, s.toolGetFindingTraffic(), map[string]any{"finding_id": int64(900000000000000000)}, true)
-	if !strings.Contains(wrong, "独立漏洞记录 ID") {
+	if !strings.Contains(wrong, "independent finding record ID") {
 		t.Fatal("ambiguous ID error", wrong)
 	}
 	input["finding_id"] = recorded.FindingID
@@ -246,7 +246,7 @@ func TestFindingWorkflowMigrationPreservesUserConfiguration(t *testing.T) {
 	}
 	search, _ := pg.GetTool("traffic_search")
 	get, _ := pg.GetTool("traffic_get")
-	if !strings.Contains(search.Description, "支持裸主机、主机:端口或完整 URL") {
+	if !strings.Contains(search.Description, "supports bare host, host:port, or full URL") {
 		t.Fatal("traffic_search description migration missing host/port guidance")
 	}
 	if search.Enabled || !contains(search.Agents, "reporter") || get.Enabled || len(get.Agents) != 1 || get.Agents[0] != "custom-agent" {

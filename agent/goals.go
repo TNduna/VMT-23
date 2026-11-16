@@ -7,11 +7,11 @@ import (
 	"strings"
 
 	"github.com/TNduna/VMT-23/db"
-	"github.com/TNduna/norma/agentcore"
-	"github.com/TNduna/norma/llm"
-	acperm "github.com/TNduna/norma/permission"
-	actool "github.com/TNduna/norma/tool"
-	"github.com/TNduna/norma/transcript"
+	"github.com/Autumn-27/norma/agentcore"
+	"github.com/Autumn-27/norma/llm"
+	acperm "github.com/Autumn-27/norma/permission"
+	actool "github.com/Autumn-27/norma/tool"
+	"github.com/Autumn-27/norma/transcript"
 )
 
 // goalsDefaultTmpl is the built-in EDITABLE body (section [A]) of the goals-decomposer

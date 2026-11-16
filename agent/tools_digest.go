@@ -13,7 +13,7 @@ import (
 	"sort"
 
 	"github.com/TNduna/VMT-23/db"
-	actool "github.com/TNduna/norma/tool"
+	actool "github.com/Autumn-27/norma/tool"
 )
 
 // digestMemberEntry builds the compact per-member view expand_digest returns —

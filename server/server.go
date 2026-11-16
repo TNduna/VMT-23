@@ -26,9 +26,9 @@ import (
 	"github.com/TNduna/VMT-23/llmrec"
 	"github.com/TNduna/VMT-23/report"
 	"github.com/TNduna/VMT-23/traffic"
-	"github.com/TNduna/norma/llm"
-	actool "github.com/TNduna/norma/tool"
-	"github.com/TNduna/norma/transcript"
+	"github.com/Autumn-27/norma/llm"
+	actool "github.com/Autumn-27/norma/tool"
+	"github.com/Autumn-27/norma/transcript"
 )
 
 // BuildVersion is the backend application version, injected from cmd/artex at

@@ -124,7 +124,9 @@ export async function http<T>(path: string, init?: RequestInit): Promise<T> {
   });
   if (r.status === 401) {
     if (typeof window !== "undefined") {
+      localStorage.removeItem("vmt23_token");
       localStorage.removeItem("artex_token");
+      document.cookie = "vmt23_token=; path=/; max-age=0";
       document.cookie = "artex_token=; path=/; max-age=0";
       window.location.href = "/login";
     }

@@ -10,7 +10,7 @@ import (
 	"testing"
 
 	"github.com/TNduna/VMT-23/llmrec"
-	"github.com/TNduna/norma/llm"
+	"github.com/Autumn-27/norma/llm"
 )
 
 // End-to-end through a real norma provider: the Capture rides the context into

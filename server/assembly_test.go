@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	actool "github.com/TNduna/norma/tool"
+	actool "github.com/Autumn-27/norma/tool"
 	"github.com/TNduna/VMT-23/agent"
 	"github.com/TNduna/VMT-23/db"
 )

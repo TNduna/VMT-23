@@ -5,7 +5,7 @@ import (
 	"sync/atomic"
 	"testing"
 
-	"github.com/TNduna/norma/llm"
+	"github.com/Autumn-27/norma/llm"
 )
 
 // 空转回合(仅思考、无正文无工具)的识别与续跑，见 steerHooks.Stop。

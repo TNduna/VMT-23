@@ -10,7 +10,7 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/TNduna/norma/llm"
+	"github.com/Autumn-27/norma/llm"
 )
 
 // Memory is independent of the main snapshot. Through is a persisted ordinal,

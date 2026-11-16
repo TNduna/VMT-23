@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	actool "github.com/TNduna/norma/tool"
+	actool "github.com/Autumn-27/norma/tool"
 )
 
 // TestBuiltinToolSeeds ensures the catalog builds from a nil-store ToolSet without

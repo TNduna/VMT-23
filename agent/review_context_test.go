@@ -10,8 +10,8 @@ import (
 	"github.com/TNduna/VMT-23/db"
 	"github.com/TNduna/VMT-23/guard"
 	"github.com/TNduna/VMT-23/intercept"
-	"github.com/TNduna/norma/llm"
-	"github.com/TNduna/norma/tool"
+	"github.com/Autumn-27/norma/llm"
+	"github.com/Autumn-27/norma/tool"
 )
 
 // Real PostgreSQL + SDK hooks: Worker reviews receive the current call only.

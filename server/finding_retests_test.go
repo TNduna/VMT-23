@@ -17,8 +17,8 @@ import (
 	"github.com/TNduna/VMT-23/agent"
 	"github.com/TNduna/VMT-23/db"
 	"github.com/TNduna/VMT-23/intercept"
-	"github.com/TNduna/norma/llm"
-	actool "github.com/TNduna/norma/tool"
+	"github.com/Autumn-27/norma/llm"
+	actool "github.com/Autumn-27/norma/tool"
 )
 
 type retestProvider struct {

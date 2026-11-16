@@ -221,7 +221,7 @@ build_target() {
     -trimpath \
     -ldflags "-s -w -buildid= -X main.version=${VMT23_BUILD_VERSION}" \
     -o "$output" \
-    ./cmd/vmt-23
+    ./cmd/artex
 
   compress_binary "$output" "$goos"
   if command -v file >/dev/null 2>&1; then file "$output"; fi

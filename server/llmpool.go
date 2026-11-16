@@ -7,7 +7,7 @@ import (
 	"github.com/TNduna/VMT-23/agent"
 	"github.com/TNduna/VMT-23/db"
 	"github.com/TNduna/VMT-23/llmpool"
-	"github.com/TNduna/norma/llm"
+	"github.com/Autumn-27/norma/llm"
 )
 
 // LLM 轮询(故障转移)的服务端接线。设计见 docs/LLM轮询设计.md：

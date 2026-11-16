@@ -17,8 +17,8 @@ import (
 	"github.com/TNduna/VMT-23/agent"
 	"github.com/TNduna/VMT-23/db"
 	"github.com/TNduna/VMT-23/sidequestion"
-	"github.com/TNduna/norma/harness"
-	"github.com/TNduna/norma/llm"
+	"github.com/Autumn-27/norma/harness"
+	"github.com/Autumn-27/norma/llm"
 )
 
 type sideHTTPProvider struct {

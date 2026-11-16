@@ -10,7 +10,7 @@ import (
 	"strings"
 
 	"github.com/TNduna/VMT-23/db"
-	actool "github.com/TNduna/norma/tool"
+	actool "github.com/Autumn-27/norma/tool"
 )
 
 // assetInterceptCandidates extracts domain/IP/URL candidate strings from an asset item for interception matching.

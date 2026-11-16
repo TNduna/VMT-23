@@ -7,8 +7,8 @@ import (
 	"testing"
 
 	"github.com/TNduna/VMT-23/db"
-	"github.com/TNduna/norma/agentcore"
-	"github.com/TNduna/norma/llm"
+	"github.com/Autumn-27/norma/agentcore"
+	"github.com/Autumn-27/norma/llm"
 )
 
 type captureUsageProvider struct {
